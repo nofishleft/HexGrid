@@ -52,6 +52,7 @@ namespace nz.Rishaan.HexGrid {
         private void Paint() {
             foreach (MeshRenderer mr in GameObject.FindObjectsOfType<MeshRenderer>()) {
                 if (mr.gameObject.name == "Wall") {
+                    mr.gameObject.layer = 9;
                     mr.material = DefaultWallMaterial;
                     BoxCollider col = mr.gameObject.GetComponent<BoxCollider>();
                     if (col == null) {
