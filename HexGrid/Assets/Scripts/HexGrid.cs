@@ -7,6 +7,10 @@ namespace nz.Rishaan.HexGrid {
         //Properties
         public Mesh BASE;
 
+        public Material DefaultWallMaterial = null;
+
+        public static float StepHeight = 0.2f;
+
         public static float STEP;
         public static float AGENTHEIGHT;
         public static float AGENTRADIUS;
@@ -45,6 +49,31 @@ namespace nz.Rishaan.HexGrid {
             return DIR[j];
         }
 
+        private void Paint() {
+            foreach (MeshRenderer mr in GameObject.FindObjectsOfType<MeshRenderer>()) {
+                if (mr.gameObject.name == "Wall") {
+                    mr.material = DefaultWallMaterial;
+                    BoxCollider col = mr.gameObject.GetComponent<BoxCollider>();
+                    if (col == null) {
+                        mr.gameObject.AddComponent<BoxCollider>();
+                    }
+                }
+            }
+        }
+
+        private void Start()
+        {
+            Paint();
+            //Merge();
+            //Bake();
+        }
+
+        private void Update()
+        {
+            //NavMeshPath path = new NavMeshPath();
+            //NavMesh.CalculatePath(transform.position, new Vector3(2, 2), 1, path);
+        }
+
         public static void UpdateHeight(float h)
         {
             HEIGHT = h;
@@ -73,8 +102,20 @@ namespace nz.Rishaan.HexGrid {
             set.agentRadius = AGENTRADIUS;
             set.agentSlope = AGENTSLOPE;
             set.agentTypeID = AGENTTYPEID;
-            NavMeshData data = NavMeshBuilder.BuildNavMeshData(set,sources, new Bounds(), Vector3.up, Quaternion.identity);
+            NavMeshData data = NavMeshBuilder.BuildNavMeshData(set, sources, new Bounds(), Vector3.up, Quaternion.identity);
             NavMesh.AddNavMeshData(data);
+        }
+
+        public void Bake()
+        {
+            this.GetComponent<NavMeshSurface>().BuildNavMesh();
+
+           for (int i = 0; i < transform.childCount; ++i)
+            {
+                transform.GetChild(i).gameObject.SetActive(true);
+            }
+            this.GetComponent<MeshRenderer>().enabled = false;
+
         }
 
         public void Merge() {
@@ -91,11 +132,9 @@ namespace nz.Rishaan.HexGrid {
 
             for (int i = 0; i < filters.Length; ++i) {
                 if (filters[i].transform == transform) continue;
-
                 combiners[i].subMeshIndex = 0;
                 combiners[i].mesh = BASE; //filters[i].sharedMesh;
                 combiners[i].transform = filters[i].transform.localToWorldMatrix;
-                
             }
 
             final.CombineMeshes(combiners);
@@ -108,6 +147,7 @@ namespace nz.Rishaan.HexGrid {
             for (int i = 0; i < transform.childCount; ++i) {
                 transform.GetChild(i).gameObject.SetActive(false);
             }
+            
         }
 
     }
