@@ -6,9 +6,11 @@ public class ClearSight : MonoBehaviour
 {
     public float DistanceToPlayer = 5.0f;
     public Material TransparentMaterial = null;
+    public Material CullingMaterial = null;
     public float FadeInTimeout = 0.6f;
     public float FadeOutTimeout = 0.2f;
     public float TargetTransparency = 0.3f;
+    public Transform DestPos;
 
     public Transform player;
 
@@ -19,6 +21,14 @@ public class ClearSight : MonoBehaviour
 
     private void Update()
     {
+        TransparentMaterial.SetVector("_P1", transform.position);
+        TransparentMaterial.SetVector("_P2", player.position);
+        CullingMaterial.SetVector("_P1", transform.position);
+        CullingMaterial.SetVector("_P2", player.position);
+        transform.position = Vector3.Lerp(transform.position, DestPos.position, 10f * Time.deltaTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, DestPos.rotation, 10f * Time.deltaTime);
+    }
+    /*
         RaycastHit[] hits; // you can also use CapsuleCastAll() 
                            // TODO: setup your layermask it improve performance and filter your hits. 
         hits = Physics.CapsuleCastAll(player.position, transform.position, 0.4f, transform.position - player.position);
@@ -44,5 +54,5 @@ public class ClearSight : MonoBehaviour
             }
             AT.BeTransparent(); // get called every frame to reset the falloff
         }
-    }
+    }*/
 }

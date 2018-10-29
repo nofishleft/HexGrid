@@ -8,6 +8,7 @@ namespace nz.Rishaan.HexGrid {
         public Mesh BASE;
 
         public Material DefaultWallMaterial = null;
+        public Material TransparentClear = null;
 
         public static float StepHeight = 0.2f;
 
@@ -31,8 +32,32 @@ namespace nz.Rishaan.HexGrid {
 
         public static Vector3[] DIR = { NORTH, NORTHEAST, SOUTHEAST, SOUTH, SOUTHWEST, NORTHWEST };
 
+        
+        
         public static Vector3 Next(NavMeshAgent agent) {
             return agent.path.corners[0];
+        }
+
+        public void SetToMeshCol() {
+            foreach (Collider col in Object.FindObjectsOfType<Collider>()) {
+                if (col.gameObject.layer == 10) {
+                    GameObject obj = col.gameObject;
+                    if (obj.GetComponent<BoxCollider>() != null) DestroyImmediate(col);
+                    if (obj.GetComponent<MeshCollider>() == null) obj.AddComponent<MeshCollider>();
+                }
+            }
+        }
+
+        public void AddWallMesh()
+        {
+            foreach (MeshRenderer mr in Object.FindObjectsOfType<MeshRenderer>())
+            {
+                if (mr.gameObject.layer == 10)
+                {
+                    if (mr.GetComponent<BoxCollider>() != null) DestroyImmediate(mr.GetComponent<BoxCollider>());
+                    if (mr.GetComponent<MeshCollider>() == null) mr.gameObject.AddComponent<MeshCollider>();
+                }
+            }
         }
 
         public static Vector3 ClosestVector(Vector3 v) {
@@ -50,10 +75,15 @@ namespace nz.Rishaan.HexGrid {
         }
 
         private void Paint() {
+            Material[] mats = new Material[2];
+            mats[0] = DefaultWallMaterial;
+            mats[1] = TransparentClear;
+
             foreach (MeshRenderer mr in GameObject.FindObjectsOfType<MeshRenderer>()) {
                 if (mr.gameObject.name == "Wall") {
                     mr.gameObject.layer = 9;
-                    mr.material = DefaultWallMaterial;
+                    mr.sharedMaterials = mats;
+                    //mr.material = DefaultWallMaterial;
                     BoxCollider col = mr.gameObject.GetComponent<BoxCollider>();
                     if (col == null) {
                         mr.gameObject.AddComponent<BoxCollider>();
@@ -65,8 +95,8 @@ namespace nz.Rishaan.HexGrid {
         private void Start()
         {
             Paint();
-            //Merge();
-            //Bake();
+            Merge();
+            Bake();
         }
 
         private void Update()

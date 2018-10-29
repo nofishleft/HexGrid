@@ -13,6 +13,11 @@ public class HexGridEditor : Editor
 
         HexGrid h = target as HexGrid;
 
+        if (GUILayout.Button("Replace Hex Tile Colliders With Mesh Colliders"))
+        {
+            h.SetToMeshCol();
+        }
+
         if (GUILayout.Button("Merge"))
         {
             h.Merge();
