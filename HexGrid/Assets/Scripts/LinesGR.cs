@@ -68,7 +68,36 @@ public class LinesGR : MonoBehaviour {
 			m.triangles = ts;
 			m.RecalculateBounds();
 	}
+
+	public void PopPoint() {
+		var verts = ms.vertices;
+		var tris = ms.triangles;
+
+		ms.Clear();
+
+		if (verts.Length > 4) {
+			ms.vertices = downshiftVertices(verts, 4);
+			ms.triangles = downshiftTriangles(tris, 6);
+		} else {
+			ms.vertices = null;
+			ms.triangles = null;
+		}
+
+		ms.RecalculateBounds();
+	}
 	
+	Vector3[] downshiftVertices(Vector3[] ovs, int shift) {
+		Vector3[] nvs = new Vector3[ovs.Length - shift];
+		for (int i = 0; i < nvs.Length; ++i) nvs[i] = ovs[i+shift];
+		return nvs;
+	}
+
+	int[] downshiftTriangles(int[] ovs, int shift) {
+		int[] nvs = new int[ovs.Length - shift];
+		for (int i = 0; i < nvs.Length; ++i) nvs[i] = ovs[i+shift] - 4;
+		return nvs;
+	}
+
 	Vector3[] resizeVertices(Vector3[] ovs, int ns) {
 		Vector3[] nvs = new Vector3[ovs.Length + ns];
 		for(int i = 0; i < ovs.Length; i++) nvs[i] = ovs[i];

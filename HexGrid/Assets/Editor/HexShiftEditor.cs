@@ -70,7 +70,7 @@ public class HexShiftEditor : Editor
                 WallBuildingObjs[2] = new Vector3(WallBuildingObjs[0].x, floor, WallBuildingObjs[0].z);
                 WallBuildingObjs[3] = new Vector3(WallBuildingObjs[1].x, floor, WallBuildingObjs[1].z);
 
-                HexShift.BuildWall(WallBuildingObjs[0], WallBuildingObjs[1], WallBuildingObjs[2], WallBuildingObjs[3], StoreDir.normalized);
+                HexShift.BuildWall(WallBuildingObjs[0], WallBuildingObjs[1], WallBuildingObjs[2], WallBuildingObjs[3]);
                 Clear = true;
                 WallBuildingObjs = new Vector3[4];
             }
@@ -121,7 +121,7 @@ public class HexShiftEditor : Editor
                     WallBuildingObjs[2] = h.transform.position + HexGrid.DIR[i] / 2 - par;
                     WallBuildingObjs[3] = h.transform.position + HexGrid.DIR[i] / 2 + par;
 
-                    HexShift.BuildWall(WallBuildingObjs[0], WallBuildingObjs[1], WallBuildingObjs[2], WallBuildingObjs[3], HexGrid.DIR[i].normalized);
+                    HexShift.BuildWall(WallBuildingObjs[0], WallBuildingObjs[1], WallBuildingObjs[2], WallBuildingObjs[3]);
                     Clear = true;
                     WallBuildingObjs = new Vector3[4];
                 }

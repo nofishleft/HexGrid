@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Rishaan\.Rider2018.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Rishaan\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_HexGrid.761651676.00" t="ExcludeRecursive" />
+    <e p="G:\HexGrid\HexGrid" t="IncludeRecursive">
+      <e p="Assets" t="Include">
+        <e p="Editor" t="Include">
+          <e p="HexGridEditor.cs" t="Include" />
+          <e p="HexShiftEditor.cs" t="Include" />
+          <e p="NavMeshComponentsEditor.asmdef" t="Include" />
+          <e p="NavMeshComponentsGUIUtility.cs" t="Include" />
+          <e p="NavMeshLinkEditor.cs" t="Include" />
+          <e p="NavMeshModifierEditor.cs" t="Include" />
+          <e p="NavMeshModifierVolumeEditor.cs" t="Include" />
+          <e p="NavMeshSurfaceEditor.cs" t="Include" />
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="AutoTransparent.cs" t="Include" />
+          <e p="ClearSight.cs" t="Include" />
+          <e p="Generator.cs" t="Include" />
+          <e p="HexGrid.cs" t="Include" />
+          <e p="HexShift.cs" t="Include" />
+          <e p="LinesGR.cs" t="Include" />
+          <e p="Mover.cs" t="Include" />
+          <e p="NavMeshComponents.asmdef" t="Include" />
+          <e p="NavMeshLink.cs" t="Include" />
+          <e p="NavMeshModifier.cs" t="Include" />
+          <e p="NavMeshModifierVolume.cs" t="Include" />
+          <e p="NavMeshSurface.cs" t="Include" />
+        </e>
+      </e>
+      <e p="HexGrid.sln" t="IncludeFlat" />
+      <e p="Library" t="ExcludeRecursive" />
+      <e p="NavMeshComponents.csproj" t="IncludeRecursive" />
+      <e p="NavMeshComponentsEditor.csproj" t="IncludeRecursive" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Temp" t="ExcludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+      </e>
+    </e>
+  </component>
+</project>

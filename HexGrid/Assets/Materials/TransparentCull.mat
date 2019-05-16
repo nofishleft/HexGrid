@@ -5,7 +5,8 @@ Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: TransparentCull
   m_Shader: {fileID: 4800000, guid: 2f375ba88c3211447bd76788e6981ed5, type: 3}
   m_ShaderKeywords: _ALPHAPREMULTIPLY_ON
@@ -76,5 +77,5 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _P1: {r: 0.74542713, g: 6.8, b: -16.00182, a: 0}
-    - _P2: {r: 5, g: 2.3, b: -8.660254, a: 0}
+    - _P1: {r: -1.5309699, g: 5.000001, b: -10.83774, a: 0}
+    - _P2: {r: 6, g: 0.5, b: -6.9282026, a: 0}

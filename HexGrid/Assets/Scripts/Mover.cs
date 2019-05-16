@@ -176,6 +176,8 @@ public class Mover : MonoBehaviour
 
                 transform.position += dir;
 
+                LineCreator.PopPoint();
+
                 Collider[] colliders;
                 if ((colliders = Physics.OverlapSphere(new Vector3(transform.position.x, transform.position.y - transform.localScale.y / 2, transform.position.z), 0.5f /* Radius */)).Length >= 1) //Presuming the object you are testing also has a collider 0 otherwise
                 {

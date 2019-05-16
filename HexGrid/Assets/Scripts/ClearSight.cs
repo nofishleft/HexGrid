@@ -19,14 +19,17 @@ public class ClearSight : MonoBehaviour
         DistanceToPlayer = (transform.position - player.position).magnitude;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
+        transform.position = Vector3.Lerp(transform.position, DestPos.position, 10f * Time.deltaTime);
+        //transform.position = DestPos.position;
+        transform.rotation = Quaternion.Lerp(transform.rotation, DestPos.rotation, 10f * Time.deltaTime);
+        //transform.rotation = DestPos.rotation;
+        
         TransparentMaterial.SetVector("_P1", transform.position);
         TransparentMaterial.SetVector("_P2", player.position);
         CullingMaterial.SetVector("_P1", transform.position);
         CullingMaterial.SetVector("_P2", player.position);
-        transform.position = Vector3.Lerp(transform.position, DestPos.position, 10f * Time.deltaTime);
-        transform.rotation = Quaternion.Lerp(transform.rotation, DestPos.rotation, 10f * Time.deltaTime);
     }
     /*
         RaycastHit[] hits; // you can also use CapsuleCastAll() 
